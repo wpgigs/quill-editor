@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quill Editor</title>
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;400italic;700italic&family=Arsenal:wght@400;700&family=Josefin+Sans:wght@400;700&family=Lato:wght@400;700;400italic;700italic&family=Libre+Franklin:wght@400;700&family=Roboto:wght@400;700;400italic;700italic&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="editor-wrapper">
+			<div id="toolbar">
+				<select class="ql-header">
+					<option selected value="p">Paragraph</option>
+					<option value="1">Heading 1</option>
+					<option value="2">Heading 2</option>
+					<option value="3">Heading 3</option>
+				</select>
+	
+				<select class="ql-size" id="fontSizeSelect">
+					<option value="10px">10</option>
+					<option value="12px">12</option>
+					<option value="14px">14</option>
+					<option value="16px">16</option>
+					<option value="18px">18</option>
+					<option value="20px">20</option>
+					<option value="22px">22</option>
+					<option value="24px">24</option>
+					<option value="26px">26</option>
+					<option value="28px">28</option>
+				</select>
+				<select class="ql-font">
+					<option value="merriweather" selected>Merriweather</option>
+					<option value="arsenal">Arsenal</option>
+					<option value="josefin-sans">Josefin Sans</option>
+					<option value="lato">Lato</option>
+					<option value="libre-franklin">Libre Franklin</option>
+					<option value="roboto">Roboto</option>
+					<option value="playfair-display">Playfair Display</option>
+				</select>
+	
+				<button class="ql-bold"></button>
+				<button class="ql-italic"></button>
+				<button class="ql-underline"></button>
+				<button class="ql-strike"></button>
+				<button class="ql-align"></button>
+	
+				<button class="ql-list" value="ordered"></button>
+				<button class="ql-list" value="bullet"></button>
+			   
+				<button class="ql-blockquote"></button>
+				<button class="ql-link"></button>
+				<button class="ql-horizontal-rule" onclick="insertHR()"></button>
+				<button class="ql-image"></button>
+	
+				<button class="ql-indent" value="-1"><svg class="ck ck-icon ck-reset_all-excluded ck-icon_inherit-color ck-button__icon" viewBox="0 0 20 20"><path d="M2 3.75c0 .414.336.75.75.75h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 0 0-.75.75zm5 6c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zM2.75 16.5h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 1 0 0 1.5zm1.618-9.55L.98 9.358a.4.4 0 0 0 .013.661l3.39 2.207A.4.4 0 0 0 5 11.892V7.275a.4.4 0 0 0-.632-.326z"></path></svg></button>
+				<button class="ql-indent" value="+1"><svg class="ck ck-icon ck-reset_all-excluded ck-icon_inherit-color ck-button__icon" viewBox="0 0 20 20"><path d="M2 3.75c0 .414.336.75.75.75h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 0 0-.75.75zm5 6c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zM2.75 16.5h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 1 0 0 1.5zM1.632 6.95 5.02 9.358a.4.4 0 0 1-.013.661l-3.39 2.207A.4.4 0 0 1 1 11.892V7.275a.4.4 0 0 1 .632-.326z"></path></svg></button>
+	
+				<button id="undo" class="ql-custom" disabled>
+					<svg class="ck ck-icon ck-reset_all-excluded ck-icon_inherit-color ck-button__icon" viewBox="0 0 20 20"><path d="m5.042 9.367 2.189 1.837a.75.75 0 0 1-.965 1.149l-3.788-3.18a.747.747 0 0 1-.21-.284.75.75 0 0 1 .17-.945L6.23 4.762a.75.75 0 1 1 .964 1.15L4.863 7.866h8.917A.75.75 0 0 1 14 7.9a4 4 0 1 1-1.477 7.718l.344-1.489a2.5 2.5 0 1 0 1.094-4.73l.008-.032H5.042z"></path></svg>
+				</button>
+				<button id="redo" class="ql-custom" disabled>
+					<svg class="ck ck-icon ck-reset_all-excluded ck-icon_inherit-color ck-button__icon" viewBox="0 0 20 20"><path d="m14.958 9.367-2.189 1.837a.75.75 0 0 0 .965 1.149l3.788-3.18a.747.747 0 0 0 .21-.284.75.75 0 0 0-.17-.945L13.77 4.762a.75.75 0 1 0-.964 1.15l2.331 1.955H6.22A.75.75 0 0 0 6 7.9a4 4 0 1 0 1.477 7.718l-.344-1.489A2.5 2.5 0 1 1 6.039 9.4l-.008-.032h8.927z"></path></svg>
+				</button>
+	
+				<button class="ql-clean"></button>
+			</div>
+			<div id="editor">
+				<p>
+					When Mr. Bilbo Baggins of Bag End announced that he would
+					shortly be celebrating his eleventy-first birthday with a party
+					of special magnificence, there was much talk and excitement in
+					Hobbiton.
+				</p>
+				<p>
+					Bilbo was very rich and very peculiar, and had been the wonder
+					of the Shire for sixty years, ever since his remarkable
+					disappearance and unexpected return. The riches he had brought
+					back from his travels had now become a local legend, and it was
+					popularly believed, whatever the old folk might say, that the
+					Hill at Bag End was full of tunnels stuffed with treasure. And
+					if that was not enough for fame, there was also his prolonged
+					vigour to marvel at. Time wore on, but it seemed to have little
+					effect on Mr. Baggins. At ninety he was much the same as at
+					fifty. At ninety-nine they began to call him well-preserved, but
+					unchanged would have been nearer the mark. There were some that
+					shook their heads and thought this was too much of a good thing;
+					it seemed unfair that anyone should possess (apparently)
+					perpetual youth as well as (reputedly) inexhaustible wealth.
+				</p>
+				<p>
+					"It will have to be paid for," they said. "It isn"t natural, and
+					trouble will come of it!" But so far trouble had not come; and
+					as Mr. Baggins was generous with his money, most people were
+					willing to forgive him his oddities and his good fortune. He
+					remained on visiting terms with his relatives (except, of
+					course, the Sackville-Bagginses), and he had many devoted
+					admirers among the hobbits of poor and unimportant families. But
+					he had no close friends, until some of his younger cousins began
+					to grow up.
+				</p>
+			</div>
+		</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,190 @@
+
+body {
+	background-color: #f2f2f2;
+    overflow-y: hidden;
+}
+
+.editor-wrapper {
+	position: relative;
+	padding: 20px;
+	max-width: 795px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 5px hsl(0deg 0% 0% / 10%);
+}
+.ql-container.ql-snow{
+	border: 0 !important;
+}
+#editor {
+    font-family: "merriweather", serif;
+    font-size: 16px;
+	line-height: 1;
+	height: calc(90vh - 120px);
+}
+
+#editor p {
+	font-size: 16px;
+	margin: 14px 0;
+}
+
+#editor h1,  
+#editor h2, 
+#editor h3 {
+	margin: 14px 0;
+}
+
+/* Set dropdown font-families */
+#toolbar .ql-font span[data-label="merriweather"]::before {
+    font-family: "merriweather";
+}
+#toolbar .ql-font span[data-label="Mirza"]::before {
+    font-family: "Mirza";
+}
+#toolbar .ql-font span[data-label="Roboto"]::before {
+    font-family: "Roboto";
+}
+
+/* Set content font-families */
+.ql-font-merriweather {
+    font-family: "Merriweather", serif;
+}
+.ql-font-arsenal {
+    font-family: "Arsenal", sans-serif;
+}
+.ql-font-josefin-sans {
+    font-family: "Josefin Sans", sans-serif;
+}
+.ql-font-lato {
+    font-family: "Lato", sans-serif;
+}
+.ql-font-libre-franklin {
+    font-family: "Libre Franklin", sans-serif;
+}
+.ql-font-roboto {
+    font-family: "Roboto", sans-serif;
+}
+.ql-font-playfair-display {
+    font-family: "Playfair Display", serif;
+}
+
+.ql-font-merriweather.ql-bold {
+    font-weight: 700;
+}
+.ql-font-merriweather.ql-italic {
+    font-style: italic;
+}
+.ql-font-merriweather.ql-bold.ql-italic {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.ql-font-lato.ql-bold {
+    font-weight: 700;
+}
+.ql-font-lato.ql-italic {
+    font-style: italic;
+}
+.ql-font-lato.ql-bold.ql-italic {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.ql-font-roboto.ql-bold {
+    font-weight: 700;
+}
+.ql-font-roboto.ql-italic {
+    font-style: italic;
+}
+.ql-font-roboto.ql-bold.ql-italic {
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Set content font-sizes */
+.ql-size-10px {
+    font-size: 10px;
+}
+.ql-size-12px {
+    font-size: 12px;
+}
+.ql-size-14px {
+    font-size: 14px;
+}
+.ql-size-16px {
+    font-size: 16px;
+}
+.ql-size-18px {
+    font-size: 18px;
+}
+.ql-size-20px {
+    font-size: 20px;
+}
+
+.hr-line {
+    border: none;
+    display: inline-block;
+    background: #dedede;
+    padding: 0;
+    margin: 14px 0;
+    height: 4px;
+    width: 100%;
+}
+.ql-horizontal-rule {
+    position: relative;
+}
+.ql-horizontal-rule::before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #ddd;
+    height: 3px;
+    width: 17px;
+    left: 5;
+}
+
+/* Undo/redo Button */
+button.ql-custom {
+    color: #333; /* Default text color */
+    cursor: pointer;
+    padding: 8px 16px;
+    font-size: 14px;
+    background: none; /* No background */
+}
+
+/* Disabled state styling */
+button.ql-custom:disabled {
+    color: #999; /* Light gray text (if any text is present) */
+}
+
+/* Adjust SVG icon color when button is disabled */
+button.ql-custom:disabled svg {
+    fill: #bbb; /* Light gray color for the SVG icon when disabled */
+}
+
+/* Optional: Apply hover effect when enabled */
+button.ql-custom:hover:not(:disabled) {
+    border-color: #888; /* Darker border on hover */
+}
+
+.page-break {
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+    text-align: center;
+    color: #999;
+}
+
+.page-break::before {
+    content: "Page Break";
+    font-size: 12px;
+    color: #aaa;
+    display: block;
+    margin-top: 5px;
+}
+
+span.ql-picker {
+	border: 1px solid #dddddd8c;
+	margin: 0 4px 0 0;
+}
+span.ql-font.ql-picker {
+    width: 140px !important;
+}
